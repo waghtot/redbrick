@@ -19,10 +19,28 @@ class Login
         if(isset($_POST))
         {
             $res = ApiModel::verifyLogin();
-            error_log('login show me api response: '.print_r($res, 1));
             echo json_encode($res);
             die;
         }
+    }
+
+    public function resetPasswordRequest(){
+        if(isset($_POST))
+        {
+            error_log('user for verification: '.print_r($_POST, 1));
+            $res = ApiModel::checkIfUserExists();
+            echo json_encode($res);
+            die;
+        }
+    }
+
+    public function resetPassword(){
+
+        $data = new stdClass();
+        $data->code = '6000';
+        $data->message = 'Success';
+        echo json_encode($data);
+        die;
     }
 
 }

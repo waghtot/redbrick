@@ -6,7 +6,8 @@ class ApiModel
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
         $postData = json_encode($data);
-
+        error_log('this is api: '.$api);
+        error_log('and this is data '.print_r($data, 1));
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $api);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -39,8 +40,25 @@ class ApiModel
         $data->params->login = Definitions::ifEmptyThenNull($input->email);
         $data->params->password = Definitions::ifEmptyThenNull(md5($input->password));
         $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
+    
         return self::responseObject(self::doAPI($data));
+    
     }
+
+    public function checkIfUserExists(){
+
+        $input = json_decode(file_get_contents('php://input'));
+
+        $data = new stdClass();
+        $data->api = 'verify';
+        $data->action = 'User';
+        $data->email = Definitions::ifEmptyThenNull($input->email);
+        $data->projectId = Definitions::ifEmptyThenNull(PROJECT);
+        
+        return self::responseObject(self::doAPI($data));
+    
+    }
+
 
     public function responseObject($data)
     {
