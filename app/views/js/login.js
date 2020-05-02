@@ -39,7 +39,9 @@ var loguser ={
                         Swal.fire('info', 'Something went wrong. We are not able to process this operation. Please, try again later.');
                     break;
                 }
-            }else{
+            }
+
+            if(res.UserStatus){
 
                 switch(res.UserStatus)
                 {
@@ -52,9 +54,6 @@ var loguser ={
                         Swal.fire('info', 'Please verify your email address. We sent you email asking for email confirmation. Please check your spam folder.', 'info').then(function(){
                             window.location="./";
                         });
-                    break;
-                    case '3':
-                        window.location="./";
                     break;
                     case '4':
                         Swal.fire('warning', 'Your account has been suspended. Please contact us for more details.', 'warning').then(function(){
@@ -72,7 +71,10 @@ var loguser ={
                         });
                     break;
                 }
+            }else{
+                window.location="./";
             }
+
         });
     },
 
