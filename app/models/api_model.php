@@ -6,8 +6,6 @@ class ApiModel
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
         $postData = json_encode($data);
-        error_log('this is api: '.$api);
-        error_log('and this is data '.print_r($data, 1));
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $api);
         curl_setopt($ch, CURLOPT_HEADER, 0);

@@ -19,19 +19,15 @@
         <div class="row">
           <div class="container">
             <div class="row">
-              This is top menu section
+              <!-- This is top menu section -->
               <?php
-                  echo "Session: ".Session::get('login');
+                  // echo "Session: ".Session::get('login');
               ?>
             </div>
           </div>
         </div>
     </div>
     <div class="container">
-      <div class="row">
-        <h1>Hello, world!</h1>
-      </div>
-
         <?php
         
           View::render($data);

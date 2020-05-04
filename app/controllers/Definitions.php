@@ -43,7 +43,7 @@ class Definitions
         {
             return explode("/", $_SERVER['REDIRECT_URL']);
         }else{
-            return 'home';
+            return 'Login';
         }
     }
 
@@ -126,8 +126,11 @@ class Definitions
 
     public function checkUser($controller)
     {
-
+        error_log($controller);
         if(Session::get('user')!=''){
+            return $controller;
+        }
+        if(!isset($_SESSION['user']) && $controller == 'Register'){
             return $controller;
         }else{
             return 'Login';

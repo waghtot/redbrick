@@ -1,5 +1,5 @@
 <?php
-class Login 
+class Login extends Controller
 {
     public function __constract($data = NULL)
     {
@@ -11,6 +11,7 @@ class Login
         $page = new stdClass();
         $page->view = get_called_class();
         $page->data = 'ala ma kota';
+        $page->template = $this->getActionTemplate($page->view);
         return $page;
     }
 
@@ -19,6 +20,9 @@ class Login
         if(isset($_POST))
         {
             $res = ApiModel::verifyLogin();
+            if(isset($res->UserID) && $res->UserID > 0){
+                Session::set('user', $res->UserID);
+            }
             echo json_encode($res);
             die;
         }
@@ -27,7 +31,6 @@ class Login
     public function resetPasswordRequest(){
         if(isset($_POST))
         {
-            error_log('user for verification: '.print_r($_POST, 1));
             $res = ApiModel::checkIfUserExists();
             echo json_encode($res);
             die;
@@ -42,5 +45,5 @@ class Login
         echo json_encode($data);
         die;
     }
-
+ 
 }

@@ -9,6 +9,10 @@ var loguser ={
         $('#reminder').on('click', function(){
             loguser.sendReminder();
         });
+        $('#register').on('click', function(){
+            window.location="/register";
+        });
+
     },
 
     callAction:function(){
@@ -36,45 +40,45 @@ var loguser ={
                         Swal.fire('warning', 'Incorrect Username or passwrod. Please, verify your email or password and try again.', 'warning');
                     break;
                     default:
-                        Swal.fire('info', 'Something went wrong. We are not able to process this operation. Please, try again later.');
-                    break;
-                }
-            }
-
-            if(res.UserStatus){
-
-                switch(res.UserStatus)
-                {
-                    case '1':
-                        Swal.fire('info', 'This account is still waiting for verification', 'info').then(function(){
-                            window.location="./";
-                        });
-                    break;
-                    case '2':
-                        Swal.fire('info', 'Please verify your email address. We sent you email asking for email confirmation. Please check your spam folder.', 'info').then(function(){
-                            window.location="./";
-                        });
-                    break;
-                    case '4':
-                        Swal.fire('warning', 'Your account has been suspended. Please contact us for more details.', 'warning').then(function(){
-                            window.location="./";
-                        });
-                    break;
-                    case '5':
-                        Swal.fire('warning', 'Account has been blocked. Contact customer service for more information.', 'warning').then(function(){
-                            window.location="./";
-                        });
-                    break;
-                    case '6':
-                        Swal.fire('error', 'This account has been closed.', 'error').then(function(){
-                            window.location="./";
-                        });
+                        Swal.fire('info', 'Something went wrong. We are not able to process this operation. Please, try again later.', 'info');
                     break;
                 }
             }else{
-                window.location="./";
-            }
 
+                if(res.UserStatus){
+
+                    switch(res.UserStatus)
+                    {
+                        case '1':
+                            Swal.fire('info', 'This account is still waiting for verification', 'info').then(function(){
+                                window.location="./";
+                            });
+                        break;
+                        case '2':
+                            Swal.fire('info', 'Please verify your email address. We sent you email asking for email confirmation. Please check your spam folder.', 'info').then(function(){
+                                window.location="./";
+                            });
+                        break;
+                        case '4':
+                            Swal.fire('warning', 'Your account has been suspended. Please contact us for more details.', 'warning').then(function(){
+                                window.location="./";
+                            });
+                        break;
+                        case '5':
+                            Swal.fire('warning', 'Account has been blocked. Contact customer service for more information.', 'warning').then(function(){
+                                window.location="./";
+                            });
+                        break;
+                        case '6':
+                            Swal.fire('error', 'This account has been closed.', 'error').then(function(){
+                                window.location="./";
+                            });
+                        break;
+                    }
+                }else{
+                    window.location="/home";
+                }
+            }
         });
     },
 

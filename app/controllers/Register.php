@@ -1,5 +1,5 @@
 <?php
-class Home 
+class Register extends Controller
 {
     public function __constract($data = NULL)
     {
@@ -8,10 +8,11 @@ class Home
 
     public function index($data)
     {
-        error_log('Home controller: '.print_r($data, 1));
         $page = new stdClass();
         $page->view = get_called_class();
-        $page->data = 'Happy to see you here :)';
+        $page->data = '';
+        $page->template = $this->getActionTemplate($page->view);
         return $page;
     }
+ 
 }
