@@ -27,7 +27,26 @@ var register = {
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
-            console.log(res); 
+            console.log(res);
+            if(res.code !== '6000'){
+                switch(res.code){
+                    case '6016':
+                        register.missconfiguration(res.message);
+                    break;                        
+                    case '6017':
+                        register.userExists(res.message);
+                    break;
+                }
+            }else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Your Account has been created',
+                    text: 'Please find message from Us in your inbox and confirm your email address.',
+                    allowOutsideClick: false
+                }).then(function(){
+                    window.location="./";
+                });
+            } 
         });
     },
 
@@ -56,6 +75,26 @@ var register = {
         } else {
             return true;
         }
+    },
+
+    userExists:function(e){
+        Swal.fire({
+            icon: 'warning',
+            title: 'User Exists',
+            text: e,
+            showCancelButton: false,
+            allowOutsideClick: false
+        });
+    },
+
+    missconfiguration:function(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Missing or incorrec data',
+            text: 'Please check if all information are correct. It\'s look like something missing.',
+            showCancelButton: false,
+            allowOutsideClick: false
+        });
     }
 
 }

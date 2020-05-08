@@ -21,8 +21,21 @@ class Register extends Controller
         }else{
             die;
         }
+        $res = ApiModel::checkIfUserExists();
+        if($res->code !== '6000'){
+            $res = ApiModel::registerUser();
+            echo json_encode($res);
+            die;
+        }else{
+            $data = new stdClass();
+            $data->code = '6017';
+            $data->message = 'User with this email already exists';
+            echo json_encode($data);
+            die;
+        }
+        error_log('check if user exists: '.print_r($res, 1));
 
-        $res = ApiModel::registerUser($data);
+
 
     }
 }

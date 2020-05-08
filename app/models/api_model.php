@@ -70,6 +70,7 @@ class ApiModel
         $data->params->password = Definitions::ifEmptyThenNull(md5($input->password));
         $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
         return self::responseObject(self::doAPI($data));
+
     }
 
     public function responseObject($data)
