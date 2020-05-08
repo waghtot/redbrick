@@ -14,5 +14,15 @@ class Register extends Controller
         $page->template = $this->getActionTemplate($page->view);
         return $page;
     }
- 
+
+    public function registerUser(){
+        if(Definitions::getPostContent()!==false){
+            $data = Definitions::getPostContent();
+        }else{
+            die;
+        }
+
+        $res = ApiModel::registerUser($data);
+
+    }
 }

@@ -94,6 +94,7 @@ var loguser ={
             inputPlaceholder:'Enter your email address',
             inputValue: inputValue,
             showCancelButton: true,
+            allowOutsideClick: false,
             inputValidator: (value) => {
                 if (!value) {
                     return 'Type in your email address'
@@ -159,7 +160,8 @@ var loguser ={
             icon: 'info',
             title: 'Eamil Verification Needed',
             text: 'Your email adres wasn\'t verified yet. Please find in your inbox message from us with \'email verification\' step.',
-            showCancelButton: false
+            showCancelButton: false,
+            allowOutsideClick: false
         });
     },
 
@@ -193,6 +195,7 @@ var loguser ={
                     title: 'Account suspended',
                     text: 'Your account has been suspended. Reset password action is available only for active accounts',
                     showCancelButton: false,
+                    allowOutsideClick: false
                 });
             break;
             case '5':
@@ -201,6 +204,7 @@ var loguser ={
                     title: 'Account Blocked',
                     text: 'Your account has been blocked. Reset password action is available only for active accounts',
                     showCancelButton: false,
+                    allowOutsideClick: false
                 });
             break;
             case '6':
@@ -209,6 +213,7 @@ var loguser ={
                     title: 'Account Deleted',
                     text: 'Your account has been deleted. Reset password action is available only for active accounts',
                     showCancelButton: false,
+                    allowOutsideClick: false
                 });
             break;
         }

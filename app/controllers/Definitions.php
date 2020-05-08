@@ -3,6 +3,13 @@
 class Definitions
 {
 
+    public function getPostContent(){
+        if(isset($_POST)){
+            return json_decode(file_get_contents('php://input'));
+        }
+        return false;
+    }
+
     public function getPost()
     {
         $uri = new stdClass();

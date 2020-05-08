@@ -31,7 +31,7 @@
         <?php
         
           View::render($data);
-        
+  
         ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -45,12 +45,17 @@
       {
           case 'Login':
             ?>
-            <script src="app/views/js/login.js?v=<?php echo date('Hi'); ?>"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+              <script src="app/views/js/login.js?v=<?php echo date('Hi'); ?>"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+            <?php
+          break;
+          case 'Register':
+            ?>
+              <script src="app/views/js/register.js?v=<?php echo date('Hi'); ?>"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
             <?php
           break;
       }
     ?>
-  
   </body>
 </html>

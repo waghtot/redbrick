@@ -3,8 +3,10 @@ class ApiModel
 {
     public function doAPI($data){
 
+        error_log('data: '.print_r($data, 1));
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
+        error_log('data: '.$api);
         $postData = json_encode($data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $api);
@@ -57,6 +59,18 @@ class ApiModel
     
     }
 
+    public function registerUser()
+    {
+
+        $input = json_decode(file_get_contents('php://input'));
+
+        $data = new stdClass();
+        $data->api = 'Register';
+        $data->params->login = Definitions::ifEmptyThenNull($input->email);
+        $data->params->password = Definitions::ifEmptyThenNull(md5($input->password));
+        $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
+        return self::responseObject(self::doAPI($data));
+    }
 
     public function responseObject($data)
     {
