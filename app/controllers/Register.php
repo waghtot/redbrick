@@ -8,6 +8,20 @@ class Register extends Controller
 
     public function index($data)
     {
+
+        if(isset($data->data['token'])){
+
+            $res = $this->activateAccount($data->data['token']);
+
+            if($res[0]->code !== '6000'){
+                header('location: ./register');                
+            }
+
+            Session::set('user', $res[0]->userId);
+            header('location: ./home');
+
+        }
+
         $page = new stdClass();
         $page->view = get_called_class();
         $page->data = '';

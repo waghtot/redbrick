@@ -8,7 +8,6 @@ class Home
 
     public function index($data)
     {
-        error_log('Home controller: '.print_r($data, 1));
         $page = new stdClass();
         $page->view = get_called_class();
         $page->data = 'Happy to see you here :)';

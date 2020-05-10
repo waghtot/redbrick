@@ -3,10 +3,8 @@ class ApiModel
 {
     public function doAPI($data){
 
-        // error_log('data: '.print_r($data, 1));
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
-        // error_log('data: '.$api);
         $postData = json_encode($data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $api);
@@ -83,6 +81,30 @@ class ApiModel
         $data->projectId = PROJECT;
         $res = self::responseObject(self::doAPI($data));
         return $res;
+    }
+
+    public function checkToken($input)
+    {
+        $data = new stdClass();
+        $data->api = 'token';
+        $data->action = $input->action;
+        $data->token = $input->token;
+        $data->projectId = PROJECT;
+        return self::responseObject(self::doAPI($data));
+    }
+
+    public function resetPassword($input)
+    {
+
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params->password = md5($input->newpass);
+        $data->params->token = $input->token;
+        $data->params->projectId = PROJECT;
+    
+        return self::responseObject(self::doAPI($data));
     }
 
     public function responseObject($data)

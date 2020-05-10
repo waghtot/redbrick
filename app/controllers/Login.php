@@ -11,7 +11,12 @@ class Login extends Controller
         $page = new stdClass();
         $page->view = get_called_class();
         $page->data = 'ala ma kota';
-        $page->template = $this->getActionTemplate($page->view);
+        if(Session::get('token')!==false)
+        {
+            $page->template = $this->getActionTemplate('Reset Password');
+        }else{
+            $page->template = $this->getActionTemplate($page->view);
+        }
         return $page;
     }
 

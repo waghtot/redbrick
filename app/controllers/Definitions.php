@@ -127,15 +127,13 @@ class Definitions
             $data = NULL;    
         }
 
-        // error_log('Definitions: '.print_r($data, 1));
-
         return $data;
     }
 
 
     public function checkUser($controller)
     {
-        // error_log($controller);
+
         if(Session::get('user')!=''){
             return $controller;
         }

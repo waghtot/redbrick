@@ -18,4 +18,16 @@ class Controller
 
     }
 
+    public function activateAccount($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params->token = $input;
+        $data->params->projectId = PROJECT;
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
+
 }

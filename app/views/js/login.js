@@ -1,7 +1,7 @@
 var response = 0;
 
 var loguser ={
-    login:function()
+    login: function()
     {
         $('#btn-login').on('click', function(){
             loguser.callAction();
@@ -9,13 +9,28 @@ var loguser ={
         $('#reminder').on('click', function(){
             loguser.sendReminder();
         });
+
+        $('#btn-reset').on('click', function(){
+            loguser.setNewPassword();
+        });
+
+        $('#npassword').blur(function()
+        {
+            loguser.checkLength();
+        });
+
+        $('#rnpassword').blur(function()
+        {
+            loguser.passwordMatch();
+        });
+
         $('#register').on('click', function(){
             window.location="/register";
         });
 
     },
 
-    callAction:function(){
+    callAction: function(){
 
         var request = {
             email:$('#email').val(),
@@ -110,7 +125,7 @@ var loguser ={
 
     },
 
-    resetPassworRequest:function(e){
+    resetPassworRequest: function(e){
         const email = e;
         var request = {
             email:e
@@ -154,7 +169,7 @@ var loguser ={
         });
     },
 
-    activateAccount:function(){
+    activateAccount: function(){
         Swal.fire({
             icon: 'info',
             title: 'Eamil Verification Needed',
@@ -164,7 +179,7 @@ var loguser ={
         });
     },
 
-    resetReady:function(res, e){
+    resetReady: function(res, e){
         var request ={
             action:'Reset Password',
             userId:res,
@@ -194,7 +209,7 @@ var loguser ={
         });
     },
 
-    inactiveAccount:function(e){
+    inactiveAccount: function(e){
 
         switch(e)
         {
@@ -228,13 +243,70 @@ var loguser ={
         }
     },
 
-    validate:function(e){
+    validate: function(e){
 
         var a = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         if( !a.test( e ) ) {
             return false;
         } else {
             return true;
+        }
+    },
+
+    setNewPassword: function(){
+        
+        var request = {
+            newpass:$('#npassword').val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "Resetpassword/setNewPassword",
+            data: JSON.stringify(request),
+            dataType: 'json',
+        }).done(function(res){
+            if(res.code !== '6000'){
+                Swal.fire({
+                    icon:'error',
+                    title:'Error',
+                    text:'Your token expired. Refresh your browser and try again'
+                }).then(function(){
+                   window.location="./";
+                });
+            }else{
+                Swal.fire({
+                    icon:'success',
+                    title:'Success',
+                    text:'Your password has been updated successfully'
+                }).then(function(){
+                   window.location="./";
+                });
+            }
+        });
+
+    },
+
+    checkLength: function(){
+        if($('#npassword').val().length < 8){
+            Swal.fire({
+                icon:'warning',
+                title: 'Warning',
+                text:'Password have to be minimum 8 characters long'
+            });
+        }
+    },
+
+    passwordMatch: function(){
+        var newpass = $('#npassword').val();
+        var renpass = $('#rnpassword').val();
+        if(newpass!=renpass){
+            Swal.fire({
+                icon:'warning',
+                title:'Warning',
+                text:'Passwords doesn\'t match'
+            }).then(function(){
+                document.getElementById('rnpassword').value = '';
+            });
         }
     }
 
