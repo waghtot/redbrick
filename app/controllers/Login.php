@@ -38,11 +38,11 @@ class Login extends Controller
     }
 
     public function resetPassword(){
+        $input = json_decode(file_get_contents('php://input'));
+        $input->projectId = PROJECT;
 
-        $data = new stdClass();
-        $data->code = '6000';
-        $data->message = 'Success';
-        echo json_encode($data);
+        $email = ApiModel::sendEmail($input);
+        echo json_encode($email);
         die;
     }
  

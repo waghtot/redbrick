@@ -33,9 +33,5 @@ class Register extends Controller
             echo json_encode($data);
             die;
         }
-        error_log('check if user exists: '.print_r($res, 1));
-
-
-
     }
 }

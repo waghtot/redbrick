@@ -27,7 +27,7 @@ var register = {
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
-            console.log(res);
+
             if(res.code !== '6000'){
                 switch(res.code){
                     case '6016':
@@ -44,7 +44,13 @@ var register = {
                     text: 'Please find message from Us in your inbox and confirm your email address.',
                     allowOutsideClick: false
                 }).then(function(){
-                    window.location="./";
+                    Swal.fire({
+                        html: res.html,
+                        allowOutsideClick: false,
+                        showConfirmButton: false
+                    }).then(function(){
+                        window.location="./";
+                    });
                 });
             } 
         });

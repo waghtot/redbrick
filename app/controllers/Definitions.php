@@ -37,7 +37,6 @@ class Definitions
             $name = $page->controller;
             if(class_exists($name)==true){
                 $class = new $name();
-                $class->index($page);
                 $data = $class->index($page);
                 new View($data);
             }
@@ -127,17 +126,20 @@ class Definitions
         }else{
             $data = NULL;    
         }
+
+        // error_log('Definitions: '.print_r($data, 1));
+
         return $data;
     }
 
 
     public function checkUser($controller)
     {
-        error_log($controller);
+        // error_log($controller);
         if(Session::get('user')!=''){
             return $controller;
         }
-        if(!isset($_SESSION['user']) && $controller == 'Register'){
+        if(!isset($_SESSION['user']) && ($controller == 'Register' || $controller == 'Resetpassword')){
             return $controller;
         }else{
             return 'Login';

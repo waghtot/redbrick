@@ -21,7 +21,6 @@ var loguser ={
             email:$('#email').val(),
             password:$('#password').val()
         }
-        console.log(JSON.stringify(request));
 
         $.ajax ({
             type: "POST",
@@ -135,7 +134,7 @@ var loguser ={
                 break;
 
                 case '3':
-                    loguser.resetReady(e);
+                    loguser.resetReady(res.UserId, e);
                 break;
 
                 case '4':
@@ -165,28 +164,38 @@ var loguser ={
         });
     },
 
-    resetReady:function(e){
+    resetReady:function(res, e){
         var request ={
+            action:'Reset Password',
+            userId:res,
             email:e
-        } 
+        }
+
         $.ajax({
             type: "POST",
             url: "login/resetPassword",
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
+
             if(res.code == '6000'){
                 Swal.fire({
-                    title: 'Reset Password Request',
-                    html: '<p>Check your inbox now.</p><p>'+e+'</p><p>You should received email with instructions</p>',
-                    showCancelButton: false,
+                    html: res.html,
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                }).then(function(){
+                    Swal.fire({
+                        title: 'Reset Password Request',
+                        html: '<p>Check your inbox now.</p><p>'+e+'</p><p>You should received email with instructions</p>',
+                        showCancelButton: false,
+                    });
                 });
             }
         });
     },
 
     inactiveAccount:function(e){
-        console.log(e);
+
         switch(e)
         {
             case '4':

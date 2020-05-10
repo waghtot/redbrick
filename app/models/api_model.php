@@ -3,10 +3,10 @@ class ApiModel
 {
     public function doAPI($data){
 
-        error_log('data: '.print_r($data, 1));
+        // error_log('data: '.print_r($data, 1));
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
-        error_log('data: '.$api);
+        // error_log('data: '.$api);
         $postData = json_encode($data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $api);
@@ -71,6 +71,18 @@ class ApiModel
         $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
         return self::responseObject(self::doAPI($data));
 
+    }
+
+    public function sendEmail($input)
+    {
+
+        $data = new stdClass();
+        $data->api = 'email';
+        $data->action = 'Reset Password';
+        $data->userId = $input->userId;
+        $data->projectId = PROJECT;
+        $res = self::responseObject(self::doAPI($data));
+        return $res;
     }
 
     public function responseObject($data)
