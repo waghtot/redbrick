@@ -22,15 +22,19 @@ class Login extends Controller
 
     public function loginUser(){
 
-        if(isset($_POST))
+        if(!isset($_POST))
         {
-            $res = ApiModel::verifyLogin();
-            if(isset($res->UserID) && $res->UserID > 0){
-                Session::set('user', $res->UserID);
-            }
-            echo json_encode($res);
             die;
         }
+
+        $res = ApiModel::verifyLogin();
+
+        if(isset($res->UserID) && $res->UserID > 0){
+            Session::set('user', $res->UserID);
+        }
+
+        echo json_encode($res);
+        die;
     }
 
     public function resetPasswordRequest(){

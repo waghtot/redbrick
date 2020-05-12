@@ -34,7 +34,7 @@ var loguser ={
 
         var request = {
             email:$('#email').val(),
-            password:$('#password').val()
+            password:$('#password').val(),
         }
 
         $.ajax ({
@@ -43,6 +43,7 @@ var loguser ={
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
+
             if(res.code !== '6000'){
                 switch(res.code)
                 {
@@ -58,7 +59,6 @@ var loguser ={
                     break;
                 }
             }else{
-
                 if(res.UserStatus){
 
                     switch(res.UserStatus)
@@ -72,6 +72,9 @@ var loguser ={
                             Swal.fire('info', 'Please verify your email address. We sent you email asking for email confirmation. Please check your spam folder.', 'info').then(function(){
                                 window.location="./";
                             });
+                        break;
+                        case '3':
+                            window.location="./home";
                         break;
                         case '4':
                             Swal.fire('warning', 'Your account has been suspended. Please contact us for more details.', 'warning').then(function(){
@@ -89,8 +92,6 @@ var loguser ={
                             });
                         break;
                     }
-                }else{
-                    window.location="/home";
                 }
             }
         });

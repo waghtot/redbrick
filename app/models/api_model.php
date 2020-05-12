@@ -38,8 +38,9 @@ class ApiModel
         $data->params->login = Definitions::ifEmptyThenNull($input->email);
         $data->params->password = Definitions::ifEmptyThenNull(md5($input->password));
         $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
-    
-        return self::responseObject(self::doAPI($data));
+        $res = self::responseObject(self::doAPI($data));
+
+        return $res;
     
     }
 
