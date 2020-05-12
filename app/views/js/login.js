@@ -73,6 +73,9 @@ var loguser ={
                                 window.location="./";
                             });
                         break;
+                        case '3':
+                            window.location="./home";
+                        break;
                         case '4':
                             Swal.fire('warning', 'Your account has been suspended. Please contact us for more details.', 'warning').then(function(){
                                 window.location="./";
@@ -89,8 +92,6 @@ var loguser ={
                             });
                         break;
                     }
-                }else{
-                    window.location="/home";
                 }
             }
         });
