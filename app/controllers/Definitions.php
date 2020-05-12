@@ -134,6 +134,11 @@ class Definitions
     public function checkUser($controller)
     {
 
+        if($controller == 'Logout'){    
+            session_destroy();
+            header('location: ./');
+        }
+
         if(Session::get('user')!=''){
             return $controller;
         }
