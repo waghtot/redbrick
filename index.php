@@ -1,9 +1,4 @@
 <?php
-
-if($_SESSION){
-    echo "<pre>".print_r($_SESSION, 1)."</pre>";
-}
-
 // ini_set('error_reporting', E_STRICT);
 session_start();
 require_once('vendor/autoload.php');
