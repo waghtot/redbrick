@@ -49,7 +49,7 @@ class Definitions
         {
             return explode("/", $_SERVER['REDIRECT_URL']);
         }else{
-            return 'Login';
+            return 'Home';
         }
     }
 
@@ -139,9 +139,11 @@ class Definitions
             header('location: ./');
         }
 
-        if(Session::get('user')!=''){
+        if(Session::get('user')>0){
+            error_log('controller name: '.$controller);
             return $controller;
         }
+
         if(!isset($_SESSION['user']) && ($controller == 'Register' || $controller == 'Resetpassword')){
             return $controller;
         }else{

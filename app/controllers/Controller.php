@@ -164,4 +164,17 @@ class Controller
         $res = json_decode(ApiModel::doAPI($data));
         return $res;
     }
+
+    public function getProjectList()
+    {
+        $data = new stdClass();
+        $data->api = 'project';
+        $data->action = 'Project List';
+        $data->userId = Session::get('user');
+        $data->projectId = PROJECT;
+
+        $res = json_decode(ApiModel::doAPI($data));
+        error_log('api-project response: '.print_r($res, 1));
+        return $res;
+    }
 }
