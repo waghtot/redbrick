@@ -30,4 +30,138 @@ class Controller
         return $res;
     }
 
+    public function getCountry()
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $res = json_decode(ApiModel::doAPI($data));
+        
+        $list = array();
+        foreach($res as $key=>$value){
+            $list[$value->ISOC] = ucwords(strtolower($value->Name));
+        }
+
+        return $list;
+    }
+
+    public function getPersonTitle()
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $res = json_decode(ApiModel::doAPI($data));
+
+        $title = array();
+        foreach($res as $key=>$value){
+            $title[$value->ID] = ucwords(strtolower($value->Name));
+        }
+
+        return $title;
+    }
+
+    public function getJobTitle()
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'CORE';
+        $data->procedure = __FUNCTION__;
+        $data->params->projectId = PROJECT;
+        $data->params->language = '826';
+        $res = json_decode(ApiModel::doAPI($data));
+
+        $jobtitle = array();
+        foreach($res as $key=>$value){
+            $jobtitle[$value->ID] = ucwords(strtolower($value->Name));
+        }
+
+        return $jobtitle;
+    }
+
+    public function getPostData()
+    {
+        $data = json_decode(file_get_contents('php://input'));
+        return $data;
+
+    }
+
+    public function createPerson($input)
+    {
+        $data = new stdClass();
+        $data->api = 'person';
+        $data->action = 'Create Person';
+        $data->params = $input;
+        $data->params->projectId = PROJECT;
+
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
+
+    public function createPersonUpdate($input)
+    {
+        $data = new stdClass();
+        $data->api = 'person';
+        $data->action = 'Update Person';
+        $data->params = $input;
+        $data->params->projectId = PROJECT;
+
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
+
+    public function getPerson()
+    {
+        $data = new stdClass();
+        $data->api = 'person';
+        $data->action = 'Get Person';
+        $data->person = Session::get('user');
+
+        $res = json_decode(ApiModel::doAPI($data));
+            if(empty($res)){
+                $res = new stdClass();
+                $res->button = 'btn-profile';
+            }else{
+                $res->button = 'btn-profile-update';
+            }
+
+        return $res;
+    }
+
+
+    public function createProfile($input)
+    {
+        $data = new stdClass();
+        $data->api = 'profile';
+        $data->action = 'Create Profile';
+        $data->params = $input;
+        $data->params->projectId = PROJECT; 
+
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
+
+    public function createProfileUpdate($input)
+    {
+        $data = new stdClass();
+        $data->api = 'profile';
+        $data->action = 'Update Profile';
+        $data->params = $input;
+        $data->params->projectId = PROJECT; 
+
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
+
+    public function getProfile()
+    {
+        $data = new stdClass();
+        $data->api = 'profile';
+        $data->action = 'Get Profile';
+        $data->person = Session::get('user');
+
+        $res = json_decode(ApiModel::doAPI($data));
+        return $res;
+    }
 }

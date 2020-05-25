@@ -59,6 +59,11 @@
               <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
             <?php
           break;
+          case 'Profile':
+            ?>
+              <script src="app/views/js/profile.js?v=<?php echo date('Hi'); ?>"></script>
+            <?php
+          break;
       }
     ?>
 
