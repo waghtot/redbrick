@@ -1,12 +1,3 @@
-<?php
-    if(isset($data)){
-        echo "<h1>".$data->view."</h1>";
-        echo "<p>".$data->data."</p>";
-        // echo "<pre>".print_r($data->person, 1)."</pre>";
-        // echo "<pre>".print_r($data->profile, 1)."</pre>";
-    }
-?>
-
 <form name="profile" id="Profile">
     <label>Person Information</label>
     <div class="form-group">

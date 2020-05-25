@@ -4,7 +4,9 @@ class Profile extends Controller
 {
     public function __constract($data = NULL)
     {
-        return $this->index($data);
+        if($data !== NULL){
+            return $this->index($data);
+        }
     }
 
     public function index($data)
