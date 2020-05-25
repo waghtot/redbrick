@@ -174,7 +174,7 @@ class Controller
         $data->projectId = PROJECT;
 
         $res = json_decode(ApiModel::doAPI($data));
-        error_log('api-project response: '.print_r($res, 1));
+        // error_log('api-project response: '.print_r($res, 1));
         return $res;
     }
 }
