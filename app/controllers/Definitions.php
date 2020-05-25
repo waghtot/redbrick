@@ -60,7 +60,6 @@ class Definitions
         if(is_array($request))
         {
 
-            error_log('request: '.print_r($request, 1));
 
             foreach($request as $key=>$value)
             {
@@ -71,12 +70,13 @@ class Definitions
                     switch($key)
                     {
                         case 1:
-                            error_log('route controller: '.$value);
                             $route->controller = ucfirst($value);
                         break;
                         default:
-                            error_log('partial view: '.$value);
-                            $route->partial[] = $value;
+                            if(count($request)>2 && self::checkPartial($request)!==false)
+                            {
+                                $route->partial[] = $value;
+                            }
                         break;
                     }
 
@@ -144,7 +144,7 @@ class Definitions
         }
 
         if(Session::get('user')>0){
-            error_log('controller name: '.$controller);
+            // error_log('controller name: '.$controller);
             return $controller;
         }
 
@@ -162,5 +162,16 @@ class Definitions
         }else{
             return $string;
         }
+    }
+
+    public function checkPartial($data)
+    {
+        $filename = PARTIAL.ucfirst($data[1]).'/'.ucfirst($data[1]).ucfirst($data[2]).'.php';
+
+        if (file_exists($filename)){            
+            return true;
+        }
+
+        return false;
     }
 }
