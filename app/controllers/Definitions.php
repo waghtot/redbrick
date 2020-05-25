@@ -60,6 +60,8 @@ class Definitions
         if(is_array($request))
         {
 
+            error_log('request: '.print_r($request, 1));
+
             foreach($request as $key=>$value)
             {
 
@@ -69,11 +71,13 @@ class Definitions
                     switch($key)
                     {
                         case 1:
+                            error_log('route controller: '.$value);
                             $route->controller = ucfirst($value);
                         break;
                         default:
+                            error_log('partial view: '.$value);
                             $route->partial[] = $value;
-                    break;
+                        break;
                     }
 
                 }

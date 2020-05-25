@@ -13,10 +13,9 @@ class Project extends Controller
 
         $page = new stdClass();
         $page->view = get_called_class();
-        $page->data = 'Happy to see you here :)';
+        $page->data = $data;
 
         $page->projectList = $this->getProjectList();
- 
         return $page;
     }
 }

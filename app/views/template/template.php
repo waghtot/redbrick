@@ -22,9 +22,9 @@
       <nav class="my-2 my-md-0 mr-md-3">
       <?php
         if(Session::get('user')!==null && Session::get('user')>0){?>
-        <a class="p-2 text-dark" href="./">home</a>
-        <a class="p-2 text-dark" href="./project">project</a>
-        <a class="p-2 text-dark" href="./profile">profile</a>
+        <a class="p-2 text-dark" href="../">home</a>
+        <a class="p-2 text-dark" href="../project">project</a>
+        <a class="p-2 text-dark" href="../profile">profile</a>
       <?php  }
       ?>
       </nav>
