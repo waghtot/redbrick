@@ -2,7 +2,7 @@
 class ApiModel
 {
     public function doAPI($data){
-        error_log('what are we sending through?: '.print_r($data, 1));
+
         $api = PREFIX.$data->api.DNS;
         unset($data->api);
         $postData = json_encode($data);
@@ -19,7 +19,7 @@ class ApiModel
 
         $res = curl_exec($ch);
         if(isset($res)){
-            error_log('is there any response?: '.print_r($res, 1));
+
             return $res;
         }
         curl_close($ch);
