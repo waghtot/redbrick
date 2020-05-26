@@ -86,6 +86,11 @@
               <script src="app/views/js/profile.js?v=<?php echo date('Hi'); ?>"></script>
             <?php
           break;
+          case 'Project':
+            ?>
+              <script src="../app/views/js/projectcreate.js?v=<?php echo date('Hi'); ?>"></script>
+            <?php
+          break;
       }
     ?>
 
