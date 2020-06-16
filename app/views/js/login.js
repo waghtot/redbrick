@@ -196,15 +196,9 @@ var loguser ={
 
             if(res.code == '6000'){
                 Swal.fire({
-                    html: res.html,
-                    allowOutsideClick: false,
-                    showConfirmButton: false
-                }).then(function(){
-                    Swal.fire({
-                        title: 'Reset Password Request',
-                        html: '<p>Check your inbox now.</p><p>'+e+'</p><p>You should received email with instructions</p>',
-                        showCancelButton: false,
-                    });
+                    title: 'Reset Password Request',
+                    html: '<p>Check your inbox now.</p><p>'+e+'</p><p>You should received email with instructions</p>',
+                    showCancelButton: false,
                 });
             }
         });

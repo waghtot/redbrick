@@ -44,14 +44,8 @@ var register = {
                     text: 'Please find message from Us in your inbox and confirm your email address.',
                     allowOutsideClick: false
                 }).then(function(){
-                    Swal.fire({
-                        html: res.html,
-                        allowOutsideClick: false,
-                        showConfirmButton: false
-                    }).then(function(){
                         window.location="./";
                     });
-                });
             } 
         });
     },
