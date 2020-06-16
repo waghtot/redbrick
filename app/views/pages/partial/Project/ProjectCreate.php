@@ -4,7 +4,7 @@
     <div id="step-one"> <!-- set project name -->
     <label>Project Name</label>
     <div class="form-group">
-        <input type="text" name="projecName" id="projecName" class="form-control" placeholder="Project Name"
+        <input type="text" name="projecName" id="projectName" class="form-control" placeholder="Project Name"
         value="">
     </div>
 

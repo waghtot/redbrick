@@ -18,4 +18,12 @@ class Project extends Controller
         $page->projectList = $this->getProjectList();
         return $page;
     }
+
+    public function createProject()
+    {
+        //send data to api-project
+        $res = ApiModel::createProject();
+    
+        error_log('project data: '.print_r(Controller::getPostData(), 1));
+    }
 }

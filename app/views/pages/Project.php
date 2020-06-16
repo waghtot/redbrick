@@ -7,6 +7,10 @@
         // echo "<pre>".print_r($data, 1)."</pre>";
         // error_log('call partial view: '.$data->data->partial[0]);
 
+        if(isset($data->projectList)){
+            echo "<pre>".print_r($data->projectList, 1)."</pre>";
+        }
+
         if(!isset($data->data->partial)){
         ?>
             <div class="row">

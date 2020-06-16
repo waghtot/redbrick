@@ -108,6 +108,18 @@ class ApiModel
         return self::responseObject(self::doAPI($data));
     }
 
+    public function createProject()
+    {
+        $input = json_decode(file_get_contents('php://input'));
+        $data = new stdClass();
+        $data->api='project';
+        $data->action = 'Create Project';
+        $data->params = $input;
+        $data->params->projectId  = PROJECT;
+        $data->params->userId = Session::get('user');
+        return self::responseObject(self::doAPI($data));
+    }
+
     public function responseObject($data)
     {
         $resObj = json_decode($data);
