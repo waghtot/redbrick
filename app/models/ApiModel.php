@@ -119,7 +119,7 @@ class ApiModel
         $data->params->userId = Session::get('user');
         return self::responseObject(self::doAPI($data));
     }
-
+    
     public function responseObject($data)
     {
         $resObj = json_decode($data);

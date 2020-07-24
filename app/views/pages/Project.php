@@ -1,30 +1,45 @@
-
 <?php
-    if(isset($data)){
-        // echo "<h1>".$data->view."</h1>";
-        // echo "<p>".$data->data."</p>";
 
-        // echo "<pre>".print_r($data, 1)."</pre>";
-        // error_log('call partial view: '.$data->data->partial[0]);
+if(!isset($data->data->partial)){
+    projectStatistics($data);
+    createProject($data);
+    projectList($data);
+}
+editProject($data);
 
-        if(isset($data->projectList)){
-            echo "<pre>".print_r($data->projectList, 1)."</pre>";
-        }
 
-        if(!isset($data->data->partial)){
-        ?>
-            <div class="row">
-                <a href="../project/create">Create project</a>
-            </div>
-        <?php
-        }
+function projectStatistics($data)
+{
+    if(isset($data->projects))
+    {
+        View::partial('Project/ProjectView', $data->projects);
+    }
+}
 
-        if(isset($data->data->partial)){
-            foreach($data->data->partial as $value){
+function createProject($data)
+{
+    echo '<div class="row">';
+        echo '<input type="button" class="btn btn-info btn-md" id="newProject" value="Create Project" data-type="create">';
+    echo '</div>';
+}
 
-                View::partial($data->view.'/'.$data->view.ucfirst($value));
-            }
+function projectList($data)
+{
+    if(isset($data->projects))
+    {
+        echo "<div id=\"pl\">";
+            View::partial('Project/ProjectLabel', $data->projects);
+        echo "</div>";
+    }
+}
+
+function editProject($data){
+    if(isset($data->data->partial))
+    {
+        foreach($data->data->partial as $value)
+        {
+            View::partial($data->view.'/'.$data->view.ucfirst($value), 0);
         }
     }
+}
 ?>
-

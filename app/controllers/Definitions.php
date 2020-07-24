@@ -19,7 +19,6 @@ class Definitions
         {
             $className = ucfirst($postData->class);
             $classMethod = $postData->method;
-            error_log($className.' '.$classMethod);
             $res = $className::$classMethod();
             echo json_encode($res);
             die;
@@ -105,7 +104,6 @@ class Definitions
         
         if(!empty($input))
         {
-            error_log('class and method:'.print_r($input, 1));
             $data = new stdClass();
             $data->class = $input[1];
             $data->method = end($input);

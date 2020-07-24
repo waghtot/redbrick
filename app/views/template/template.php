@@ -89,6 +89,7 @@
           case 'Project':
             ?>
               <script src="../app/views/js/projectcreate.js?v=<?php echo date('Hi'); ?>"></script>
+              <script src="../app/views/js/project.js"></script>
             <?php
           break;
       }

@@ -49,35 +49,17 @@ var setpro = {
             postCode: $('#postCode').val(),
             country: $('#country').val()
         }
-        console.log(request);
+        // console.log(request);
         $.ajax({
             type: "POST",
             url: "project/createProject",
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
-            console.log($res);
+            // console.log($res);
         });
     }
 }
-
-
-
-// project fields
-// projecName
-// start-date
-// end-date
-// clientName
-// contactPerson
-// email
-// phoneHome
-// phoneMobile
-// Address1
-// Address2
-// Address3
-// Address4
-// postCode
-// country
 
 
 var init = function(){
@@ -85,20 +67,3 @@ var init = function(){
 }
 
 init();
-
-/*
-step-one
-btn-step-two
-
-step-two
-btn-back-step-one
-btn-step-two-skip
-btn-step-three
-
-step-three
-btn-back-step-two
-btn-step-three-skip
-btn-project-save
-
-
-*/

@@ -30,13 +30,12 @@ class Profile extends Controller
         $data->person->user = Session::get('user');
         $res = Controller::createPerson($data->person);
         if($res->code !== '6000'){
-            echo json_encode($res);
+            echo json_encode($res); 
             die;
         }
         unset($res);
         $data->profile->user = Session::get('user');
         $res = Controller::createProfile($data->profile);
-        // error_log('create profile: '.print_r($res, 1));
         echo json_encode($res);
         die;
     
@@ -56,7 +55,6 @@ class Profile extends Controller
 
         $data->profile->user = Session::get('user');
         $res = Controller::createProfileUpdate($data->profile);
-        // error_log('update profile: '.print_r($res, 1));
         echo json_encode($res);
         die;
 

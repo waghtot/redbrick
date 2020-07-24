@@ -174,7 +174,40 @@ class Controller
         $data->projectId = PROJECT;
 
         $res = json_decode(ApiModel::doAPI($data));
-        // error_log('api-project response: '.print_r($res, 1));
         return $res;
+    }
+
+    public function getStatusName()
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'PROJECTS';
+        $data->procedure = __FUNCTION__;
+        $res = json_decode(ApiModel::doAPI($data));
+
+        $resObject = array();
+        foreach($res as $key=>$value){
+            $resObject[$value->id] = ucwords(strtolower($value->name));
+        }
+
+        return $resObject;
+    }
+
+    public function getProjectDetails($input)
+    {
+        $data = new stdClass();
+        $data->api = 'database';
+        $data->connection = 'PROJECTS';
+        $data->procedure = __FUNCTION__;
+        $data->params->projectId = $input;
+        error_log('database response: '.print_r($data, 1));
+        $res = json_decode(ApiModel::doAPI($data));
+        error_log('database response: '.print_r($res, 1));
+        // $resObject = array();
+        // foreach($res as $key=>$value){
+        //     $resObject[$value->id] = ucwords(strtolower($value->name));
+        // }
+        // error_log('database response: '.print_r($resObject, 1));
+        // return $resObject;        
     }
 }

@@ -1,3 +1,101 @@
 #nav-home{
     cursor:pointer;
 }
+
+
+
+.project-view, .project-view:hover {
+    padding:5px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin-bottom:10px;
+    cursor:pointer;
+}
+
+.project-view:hover{
+    box-shadow: none;
+    background-color: rgb(240, 240, 240);
+}
+
+.status-1, .status-2, .status-3, .status-4, .status-5, .status-6, .status-7, .status-8{
+    width:25px;
+    height:25px;
+    border-radius: 50%;
+    margin-right:5px;
+    float:left;
+}
+
+.remove-distans{
+    margin-left:0px;
+    margin-right:0px;
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.status-1, .status-2{
+    background-color:#6c757d !important;
+}
+
+.status-3{
+    background-color:#ffc107 !important;
+}
+
+.status-4, .status-5{
+    background-color:#28a745 !important;
+}
+
+.status-6, .status-7{
+    background-color:#dc3545 !important;
+}
+
+.status-8{
+    background-color:#343a40 !important;
+}
+
+
+
+.border_1, .border_2{
+    border:1px solid #6c757d;
+}
+
+.border_3{
+    border:1px solid #ffc107;
+}
+
+.border_4, .border_5{
+    border:1px solid #28a745;
+}
+
+.border_6, .border_7{
+    border:1px solid #dc3545;
+}
+
+.border_8{
+    border:1px solid #343a40;
+}
+
+.project-header{
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+.bagde{
+    text-align:center;
+}
+
+.statusname{
+    font-size:20px;
+}
+
+.counter{
+    font-size:60px;
+}
+
+.disabled{
+    opacity:0.5 !important;
+}
+
+.project-date-right{
+    float: right;
+}
