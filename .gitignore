@@ -1,3 +1,4 @@
-app/core/*
+app/core/
+index.php
 ~*
 .gitignore
