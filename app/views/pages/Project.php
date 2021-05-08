@@ -36,10 +36,7 @@ function projectList($data)
 function editProject($data){
     if(isset($data->data->partial))
     {
-        foreach($data->data->partial as $value)
-        {
-            View::partial($data->view.'/'.$data->view.ucfirst($value), 0);
-        }
+        View::partial($data->view.'/'.$data->view.ucfirst($data->data->partial), $data->details);
     }
 }
 ?>

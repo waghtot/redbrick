@@ -60,10 +60,10 @@ class Definitions
         if(is_array($request))
         {
 
+            $route->data = array();
 
             foreach($request as $key=>$value)
             {
-
                 if($key != 0)
                 {
 
@@ -75,15 +75,19 @@ class Definitions
                         default:
                             if(count($request)>2 && self::checkPartial($request)!==false)
                             {
-                                $route->partial[] = $value;
+                                if(is_numeric($value)!==true)
+                                {
+                                    $route->partial = $value;
+                                }else{
+                                    $route->data[] = $value;
+                                }
                             }
                         break;
                     }
 
                 }
-
+               
             }
-            $route->data = NULL;
 
         }else{
 
@@ -94,8 +98,10 @@ class Definitions
         }
 
         $route->controller = self::checkUser($route->controller);
+        if(empty($route->data)){
+            $route->data = self::getData();
+        }
 
-        $route->data = self::getData();
         return $route;
     }
 

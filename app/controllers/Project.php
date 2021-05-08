@@ -15,9 +15,9 @@ class Project extends Controller
         $page->view = get_called_class();
         $page->data = $data;
         if(isset($page->data->partial)){
-            $data = ProjectModel::getPartialDetails($page->data);
+            $page->details = ProjectModel::getPartialDetails($page->data);
         }
-        // error_log('show view: '.print_r($page, 1));
+
         $page->projects = ProjectModel::getProjectsDetails();
 
         return $page;
@@ -45,5 +45,12 @@ class Project extends Controller
         Session::kill('ajax');
         die; 
     }
+
+    public function createTask()
+    {
+        $res = ProjectModel::createTask();
+        echo json_encode($res);
+        die;
+    } 
 
 }

@@ -200,14 +200,9 @@ class Controller
         $data->connection = 'PROJECTS';
         $data->procedure = __FUNCTION__;
         $data->params->projectId = $input;
-        error_log('database response: '.print_r($data, 1));
+
         $res = json_decode(ApiModel::doAPI($data));
-        error_log('database response: '.print_r($res, 1));
-        // $resObject = array();
-        // foreach($res as $key=>$value){
-        //     $resObject[$value->id] = ucwords(strtolower($value->name));
-        // }
-        // error_log('database response: '.print_r($resObject, 1));
-        // return $resObject;        
+
+        return $res;        
     }
 }

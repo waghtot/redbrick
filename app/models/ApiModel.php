@@ -19,7 +19,6 @@ class ApiModel
 
         $res = curl_exec($ch);
         if(isset($res)){
-
             return $res;
         }
         curl_close($ch);
