@@ -3,7 +3,6 @@ class Register extends Controller
 {
     public function __constract($data = NULL)
     {
-        error_log("hallo register");
         if($data !== NULL){
             return $this->index($data);
         }

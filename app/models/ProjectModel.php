@@ -146,7 +146,6 @@ class ProjectModel extends Controller
         $data->params->offer = $post->jobOffer;
 
         $res = json_decode(ApiModel::doAPI($data));
-        error_log('db response: '.print_r($res[0], 1));
         return $res[0];
     }
 

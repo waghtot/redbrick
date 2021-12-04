@@ -34,7 +34,7 @@ function projectList($data)
 }
 
 function editProject($data){
-    if(isset($data->data->partial))
+    if(isset($data->data->partial) && strpos($data->data->partial, '.js') == false )
     {
         View::partial($data->view.'/'.$data->view.ucfirst($data->data->partial), $data->details);
     }

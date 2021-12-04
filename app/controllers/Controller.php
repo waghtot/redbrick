@@ -13,6 +13,7 @@ class Controller
         $data->action = 'action';
         $data->actionName = $input;
         $data->projectId = PROJECT;
+        // error_log('get action template from Controller: '.print_r($data, 1)); //MM_CORE.getConfigProjectActionIdByActionName
         $res = json_decode(ApiModel::doAPI($data));
         return $res;
 

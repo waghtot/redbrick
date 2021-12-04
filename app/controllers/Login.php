@@ -4,12 +4,14 @@ class Login extends Controller
     public function __constract($data = NULL)
     {
         if($data !== NULL){
+
             return $this->index($data);
         }
     }
 
     public function index($data)
     {
+
         $page = new stdClass();
         $page->view = get_called_class();
         $page->data = 'ala ma kota';
@@ -27,6 +29,7 @@ class Login extends Controller
         if(isset($_POST))
         {
             $res = ApiModel::verifyLogin();
+            // error_log('login user response: '.print_r($res, 1));
             if(isset($res->UserID) && $res->UserID > 0){
                 Session::set('user', $res->UserID);
             }

@@ -43,6 +43,7 @@ var loguser ={
             data: JSON.stringify(request),
             dataType: 'json',
         }).done(function(res){
+            console.log(res);
             if(res.code !== '6000'){
                 switch(res.code)
                 {

@@ -32,7 +32,6 @@ class Definitions
         $url = self::chopURL();
         if(!empty($url))
         {
-
             $page = self::prepareObj($url);
             $name = $page->controller;
             if(class_exists($name)==true){
@@ -150,7 +149,6 @@ class Definitions
         }
 
         if(Session::get('user')>0){
-            // error_log('controller name: '.$controller);
             return $controller;
         }
 

@@ -33,7 +33,6 @@ class Project extends Controller
     public function getProjectList()
     {
         $data = Controller::getPostData();
-        // error_log('type and status: '.print_r($data, 1));
         if(isset($data->type)){
             Session::set('ajax', '1');
             $res = Controller::getProjectList();

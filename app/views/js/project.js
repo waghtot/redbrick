@@ -1,6 +1,6 @@
 var editProject=function(e){
     if(e!=0){
-        window.location.href='/project/edit/'+e;
+        window.location.href = '/project/edit/'+e;
     }
 }
 
@@ -13,7 +13,6 @@ var pro = {
                 type:$(this).attr("data-type"),
                 value:$(this).attr("data-value")
             }
-            // console.log(request);
             switch(request.type)
             {
                 case 'projects':
@@ -33,8 +32,10 @@ var pro = {
         $('.task').on('click', function(){
             if(loaded!= $(this).attr("data-task-id")){
                 loaded = $(this).attr("data-task-id");
+                console.log('taskId: '+ loaded);
                 var strl = loaded.length;
                 var loc = (location+'').slice(-strl);
+                console.log(loc);
                 if(loc == loaded)
                 {
                     window.location.reload();

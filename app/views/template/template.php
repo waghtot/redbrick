@@ -25,9 +25,9 @@
       <nav class="my-2 my-md-0 mr-md-3">
       <?php
         if(Session::get('user')!==null && Session::get('user')>0){?>
-        <a class="p-2 text-dark" href="<?php echo BASE_DIR; ?>home">home</a>
-        <a class="p-2 text-dark" href="<?php echo BASE_DIR; ?>project">project</a>
-        <a class="p-2 text-dark" href="<?php echo BASE_DIR; ?>profile">profile</a>
+        <a class="p-2 text-dark" href="/home">home</a>
+        <a class="p-2 text-dark" href="/project">project</a>
+        <a class="p-2 text-dark" href="/profile">profile</a>
       <?php  }
       ?>
       </nav>
@@ -60,7 +60,10 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
     <?php
       switch($data->view)
@@ -84,19 +87,16 @@
           break;
           case 'Project':
             ?>
-              <script src="<?php echo BASE_DIR; ?>app/views/js/projectcreate.js?v=<?php echo date('His'); ?>"></script>
-              <script src="<?php echo BASE_DIR; ?>app/views/js/project.js?v=<?php echo date('His');?>"></script>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+              <script type="text/javascript" src="app/views/js/projectcreate.js?v=<?php echo date('His'); ?>"></script>
+              <script type="text/javascript" src="app/views/js/project.js?v=<?php echo date('His');?>"></script>
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
             <?php
           break;
       }
     ?>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
  
 
     <script>

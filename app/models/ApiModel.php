@@ -3,7 +3,7 @@ class ApiModel
 {
     public function doAPI($data){
 
-        $api = PREFIX.$data->api.DNS;
+        $api = PREFIX.$data->api.INTERNAL_DNS;
         unset($data->api);
         $postData = json_encode($data);
         $ch = curl_init();
@@ -38,7 +38,6 @@ class ApiModel
         $data->params->login = Definitions::ifEmptyThenNull($input->email);
         $data->params->password = Definitions::ifEmptyThenNull(md5($input->password));
         $data->params->projectId = Definitions::ifEmptyThenNull(PROJECT);
-    
         return self::responseObject(self::doAPI($data));
     
     }
@@ -122,6 +121,7 @@ class ApiModel
     public function responseObject($data)
     {
         $resObj = json_decode($data);
+        // error_log('response object: '.print_r($resObj, 1));
         return $resObj;
     }
 
